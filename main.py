@@ -3,6 +3,12 @@ import tweepy
 from fastapi import FastAPI
 from secrets import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 from pydantic import BaseModel
+from pymongo import MongoClient
+
+
+client = MongoClient('mongodb://vilson:102030@localhost:27017/')
+db = client.apitwitter
+trends_collection = db.trends
 
 
 class TrendItem(BaseModel):
@@ -27,4 +33,6 @@ app = FastAPI()
 @app.get("/trends", response_model=List[TrendItem])
 def get_trends_route():
     trends = get_trends(woe_id=BRAZIL_WOE_ID)
-    return trends
+    trends_collection.find({})
+    trends_collection.insert_many(trends)
+    return list(trends)
