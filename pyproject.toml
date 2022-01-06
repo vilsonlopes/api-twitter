@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "api-twitter"
+version = "1.0.0"
+description = "aula dio"
+authors = ["vilsonlopes <vilsonlopes@yahoo.com.br>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tweepy = "^4.4.0"
+pymongo = "^4.0.1"
+fastapi = "^0.70.1"
+uvicorn = {extras = ["standard"], version = "^0.16.0"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+flake8 = "^4.0.1"
+black = "^21.12b0"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
